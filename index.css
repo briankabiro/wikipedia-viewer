@@ -1,0 +1,16 @@
+body{
+	background: #555;
+	display: flex;
+}
+input{
+	margin: auto;
+	border:1px solid white;
+	padding:1em;
+	background: #555;
+	transition: width 0.4s ease-in-out;
+}
+input:focus{
+	color:white;
+	border:3px solid coral;
+	width:50%;
+}
