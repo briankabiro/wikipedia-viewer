@@ -7,5 +7,10 @@ input{
 	border:1px solid white;
 	padding:1em;
 	background: #555;
-	transition: width 0.4s ease-in-out;
+	color:white;
+}
+button{
+	padding:10px;
+	border-radius:20px;
+	border:none;
 }
