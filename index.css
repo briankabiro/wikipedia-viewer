@@ -1,16 +1,30 @@
 body{
-	background: #555;
+	background: #e0323e;
 	display: flex;
+	flex-direction:column;
+}
+h1{
+	color:white;
+	text-align: center;
+}
+a{
+	text-decoration: none;
+	color:#f2ba0a;
 }
 input{
 	margin: auto;
 	border:1px solid white;
 	padding:1em;
-	background: #555;
+	background: white;
 	color:white;
+	width:30vw;
+	font-size: 1.2em;
 }
-button{
-	padding:10px;
-	border-radius:20px;
-	border:none;
+input:focus{
+	background: #024c54;
+	border:2px solid #3e6863;
 }
+form{
+	align-self: center;
+}
+

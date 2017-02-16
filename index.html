@@ -8,31 +8,39 @@
 	</head>
 	<!-- Add chrome web server-->
 	<body>
+	<h1>Search Wikipedia or get a <a href="https://en.wikipedia.org/wiki/Special:Random">Random Article</a></h1>
 	<form>
 		<input type="text" id="search-bar" autofocus=on name="search-bar">
-		<button>Search</button>
 	</form>
 	<div id="results-area"></div>	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script>
-			var searchBoxValue;
-			var searchUrl = "https://en.wikipedia.org/w/api.php";
 			$("form").on('submit', function(e){
 				e.preventDefault();
 				var searchBoxValue = $("#search-bar").val();
-				getData(searchBoxValue);
-			})
-			var getData = function (searchBoxValue){
-				$.getJSON(searchUrl,{
-				action:'query',
-				list:'search',
-				srsearch:searchBoxValue,
-				format:'json'
-				}).done(function(data){
-					console.log(data);
-					return data;
-				})	
-			}	
+				var searchUrl = 'https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&srprop=snippet&srsearch=' + searchBoxValue;
+				$.ajax({
+					type:'POST',
+					url:searchUrl,
+					headers:{
+						'Api-User-Agent': 'Example/1.0'
+					},
+					success:function(data){
+						var results  = data.query.search;
+						$.each(results, function(index,value){
+							$('#results-area').append('<div><h2>'+ value.title + '</h2><br>'+ value.snippet + '<br></div>');
+							$('#results-area div').css({
+								'color':'white',
+								'border':'0.1em solid white',
+								'padding':'0.8em',
+								'margin-top':'1em'
+							});	
+						})
+						
+					}
+				});
+			});
+
 	</script>
 	</body>
 </html>
